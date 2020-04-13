@@ -30,6 +30,17 @@ class Haslo(BaseModel):
     class Meta:
         order_by = ('haslo',)
 
+
+class Ostatnia_gra(BaseModel):
+    poziom = ForeignKeyField(Poziom, related_name='poziom')
+    kategoria = ForeignKeyField(Kategoria, related_name='kategoria')
+    haslo = CharField()
+
+
+class Statystyka(BaseModel):
+    nazwa_pola = CharField(null=False)
+    ilosc = IntegerField()
+
 #### koniec modelu ####
 
 
@@ -65,12 +76,14 @@ def polacz():
     if os.path.exists(baza_nazwa):
         os.remove(baza_nazwa)
     baza.connect()  # połączenie z bazą
-    baza.create_tables([Poziom, Kategoria, Haslo])  # tworzymy tabele
+    baza.create_tables([Poziom, Kategoria, Haslo, Ostatnia_gra, Statystyka])  # tworzymy tabele
 
     dane = {
         Haslo: 'hasla',
         Poziom: 'poziomy',
         Kategoria: 'kategorie',
+        Ostatnia_gra: 'ostatnia_gra',
+        Statystyka: 'statystyka',
     }
 
     dodaj_dane(dane)
