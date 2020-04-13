@@ -207,6 +207,7 @@ class Ui_MainWindow(object):
 
     def ustaw_kat(self, wartosc):  # funkcja wykrywa ustawienie innej kategorii niz poczatkowa(pierwsza w comboboxie)
         self.kategoria = wartosc
+        print("NPG")
 
     def ustaw_pt(self, wartosc):  # funkcja wykrywa ustawienie innego poziou tr. niz poczatkowy(pierwsza w comboboxie)
         self.poziom_tr = wartosc
