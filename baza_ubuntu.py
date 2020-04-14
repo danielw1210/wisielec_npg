@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from pathlib import Path
 
 from peewee import *
 import csv
@@ -35,7 +36,8 @@ class Haslo(BaseModel):
 class Ostatnia_gra(BaseModel):
     poziom = CharField()
     kategoria = CharField()
-    haslo = CharField()
+    haslo = CharField(null=False)
+    wynik = IntegerField()
 
 
 class Statystyka(BaseModel):
@@ -75,23 +77,25 @@ def dodaj_dane(dane):  # funkcja dodająca dane odczytane z plików csv
 
 
 def polacz():
-    #####Trochę trzeba tu poprawić ####
-    if os.path.exists(baza_nazwa):
-        os.remove(baza_nazwa)
-    baza.connect()  # połączenie z bazą
-    baza.create_tables([Poziom, Kategoria, Haslo, Ostatnia_gra, Statystyka])  # tworzymy tabele
+    sciezka_baza = os.path.abspath("./" + baza_nazwa)
 
-    dane = {
-        Haslo: 'hasla',
-        Poziom: 'poziomy',
-        Kategoria: 'kategorie',
-        Ostatnia_gra: 'ostatnia_gra',
-        Statystyka: 'statystyka',
-    }
+    if not os.path.exists(sciezka_baza):
+        Path(sciezka_baza).touch()
 
-    dodaj_dane(dane)
-    baza.commit()
-    baza.close()
+        baza.connect(reuse_if_open=True)
+        baza.create_tables([Poziom, Kategoria, Haslo, Ostatnia_gra, Statystyka])
+
+        dane = {
+            Haslo: 'hasla',
+            Poziom: 'poziomy',
+            Kategoria: 'kategorie',
+            Ostatnia_gra: 'ostatnia_gra',
+            Statystyka: 'statystyka',
+        }
+
+        dodaj_dane(dane)
+        baza.commit()
+        baza.close()
 
     return True
 
@@ -132,16 +136,16 @@ def odczytaj_gre(that):  # funkcja odczytująca stan ostaniej zapsanej gry
     poziom = Ostatnia_gra.select(Ostatnia_gra.poziom).scalar()
     kategoria = Ostatnia_gra.select(Ostatnia_gra.kategoria).scalar()
     haslo = Ostatnia_gra.select(Ostatnia_gra.haslo).scalar()
-    return poziom, kategoria, haslo
+    wynik = Ostatnia_gra.select(Ostatnia_gra.wynik).scalar()
+    return poziom, kategoria, haslo, wynik
 
 
-def zapisz_gre(poziom, kategoria, haslo, that):  # funkcja zapisująca stan gry
+def zapisz_gre(poziom, kategoria, haslo, wynik,  that):  # funkcja zapisująca stan gry
     stare_dane = Ostatnia_gra.select().get()
     stare_dane.delete_instance()
     del stare_dane
-    that.nowe_dane = Ostatnia_gra(poziom=poziom, kategoria=kategoria, haslo=haslo)
+    that.nowe_dane = Ostatnia_gra(poziom=poziom, kategoria=kategoria, haslo=haslo, wynik=wynik)
     that.nowe_dane.save()
-    return "DONE"
 
 
 def pobierz_statystyki(that):  # funkcja odczytująca statystyki gry
@@ -167,4 +171,3 @@ def aktualizuj_statystyki(wygrana, przegrana, that):  # funkcja aktualizująca s
         przegrana += dane[1]
         that.przeg = Statystyka(nazwa_pola="PRZEGRANE", ilosc=przegrana)
         that.przeg.save()
-    return "DONE"
