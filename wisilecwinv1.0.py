@@ -14,7 +14,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.ApplicationModal)
-        MainWindow.resize(969, 686)
+        MainWindow.resize(1000, 686)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../../Pobrane/hangman.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
