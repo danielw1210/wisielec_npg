@@ -8,6 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from baza_win import *
 
 
 class Ui_MainWindow(object):
@@ -188,10 +189,32 @@ class Ui_MainWindow(object):
         self.actionStatystyki.setText(_translate("MainWindow", "Statystyki"))
 
 
+    def koniec(self):
+        exit()  # funkcjonalność przycisku koniec
+
+    def rozpoczecie(self):  # funkcja realizująca funkcjonalosc gry
+        self.komunikatedt.setText(str("Rozpoczęto grę na poziomie " + self.poziom_tr + "m. Hasło z kategorii " + self.kategoria + " zostało wylosowane.\nPodaj pierwszą literę:"))
+        self.hasloedt.setText(str(liczba_liter(self) * '*  '))
+        self.wynik_edt.setText('0')
+
+    def ustaw_kat(self, wartosc):  # funkcja wykrywa ustawienie innej kategorii niz poczatkowa(pierwsza w comboboxie)
+        self.kategoria = wartosc
+        print("NPG")
+
+    def ustaw_pt(self, wartosc):  # funkcja wykrywa ustawienie innego poziou tr. niz poczatkowy(pierwsza w comboboxie)
+        self.poziom_tr = wartosc
+
+    def odczytaj(self):  # funkcja odczytująca podawane litery
+        self.podana_litera = self.podaj_edt.text()
+
+        print(self.podana_litera)
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
+    polacz()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()

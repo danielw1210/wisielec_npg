@@ -1,25 +1,27 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'wisielecokno.ui'
+# Form implementation generated from reading ui file 'wisielecokno_win.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.ApplicationModal)
-        MainWindow.resize(833, 612)
+        MainWindow.resize(969, 686)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../../Pobrane/hangman.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.labelwisielec = QtWidgets.QLabel(self.centralwidget)
-        self.labelwisielec.setGeometry(QtCore.QRect(240, 40, 361, 111))
+        self.labelwisielec.setGeometry(QtCore.QRect(340, 30, 381, 121))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(32, 74, 135))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -32,8 +34,8 @@ class Ui_MainWindow(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
         self.labelwisielec.setPalette(palette)
         font = QtGui.QFont()
-        font.setFamily("Purisa")
-        font.setPointSize(60)
+        font.setFamily("Freestyle Script")
+        font.setPointSize(100)
         font.setBold(False)
         font.setWeight(50)
         self.labelwisielec.setFont(font)
@@ -41,27 +43,24 @@ class Ui_MainWindow(object):
         self.labelwisielec.setTextFormat(QtCore.Qt.PlainText)
         self.labelwisielec.setObjectName("labelwisielec")
         self.rozpocznij_bnt = QtWidgets.QPushButton(self.centralwidget)
-        self.rozpocznij_bnt.setGeometry(QtCore.QRect(330, 210, 181, 41))
+        self.rozpocznij_bnt.setGeometry(QtCore.QRect(330, 220, 241, 41))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.rozpocznij_bnt.setFont(font)
         self.rozpocznij_bnt.setObjectName("rozpocznij_bnt")
-        self.podaj_edt = QtWidgets.QTextEdit(self.centralwidget)
-        self.podaj_edt.setGeometry(QtCore.QRect(210, 480, 104, 31))
-        self.podaj_edt.setObjectName("podaj_edt")
         self.podaj_btn = QtWidgets.QLabel(self.centralwidget)
-        self.podaj_btn.setGeometry(QtCore.QRect(80, 480, 121, 31))
+        self.podaj_btn.setGeometry(QtCore.QRect(60, 480, 141, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.podaj_btn.setFont(font)
         self.podaj_btn.setObjectName("podaj_btn")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(50, 260, 741, 201))
+        self.frame.setGeometry(QtCore.QRect(50, 260, 891, 201))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.hasloedt = QtWidgets.QTextEdit(self.frame)
-        self.hasloedt.setGeometry(QtCore.QRect(113, 10, 571, 51))
+        self.hasloedt.setGeometry(QtCore.QRect(113, 10, 761, 51))
         font = QtGui.QFont()
         font.setPointSize(18)
         self.hasloedt.setFont(font)
@@ -80,7 +79,7 @@ class Ui_MainWindow(object):
         self.komunikatlabel.setFont(font)
         self.komunikatlabel.setObjectName("komunikatlabel")
         self.komunikatedt = QtWidgets.QTextEdit(self.frame)
-        self.komunikatedt.setGeometry(QtCore.QRect(10, 110, 721, 81))
+        self.komunikatedt.setGeometry(QtCore.QRect(10, 110, 861, 81))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.komunikatedt.setFont(font)
@@ -89,20 +88,20 @@ class Ui_MainWindow(object):
         self.koniec_btn = QtWidgets.QPushButton(self.centralwidget)
         self.koniec_btn.setGeometry(QtCore.QRect(720, 530, 111, 31))
         self.koniec_btn.setObjectName("koniec_btn")
-        self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(20, 160, 801, 41))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 160, 981, 41))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.label_kateg = QtWidgets.QLabel(self.widget)
+        self.label_kateg = QtWidgets.QLabel(self.layoutWidget)
         self.label_kateg.setMaximumSize(QtCore.QSize(101, 16777215))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.label_kateg.setFont(font)
         self.label_kateg.setObjectName("label_kateg")
         self.horizontalLayout.addWidget(self.label_kateg)
-        self.comboBox_kat = QtWidgets.QComboBox(self.widget)
+        self.comboBox_kat = QtWidgets.QComboBox(self.layoutWidget)
         self.comboBox_kat.setMaximumSize(QtCore.QSize(101, 16777215))
         self.comboBox_kat.setObjectName("comboBox_kat")
         self.comboBox_kat.addItem("")
@@ -112,28 +111,28 @@ class Ui_MainWindow(object):
         self.comboBox_kat.addItem("")
         self.comboBox_kat.addItem("")
         self.horizontalLayout.addWidget(self.comboBox_kat)
-        self.label_poziom = QtWidgets.QLabel(self.widget)
+        self.label_poziom = QtWidgets.QLabel(self.layoutWidget)
         self.label_poziom.setMaximumSize(QtCore.QSize(181, 16777215))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.label_poziom.setFont(font)
         self.label_poziom.setObjectName("label_poziom")
         self.horizontalLayout.addWidget(self.label_poziom)
-        self.comboBox_pt = QtWidgets.QComboBox(self.widget)
+        self.comboBox_pt = QtWidgets.QComboBox(self.layoutWidget)
         self.comboBox_pt.setMaximumSize(QtCore.QSize(81, 16777215))
         self.comboBox_pt.setObjectName("comboBox_pt")
         self.comboBox_pt.addItem("")
         self.comboBox_pt.addItem("")
         self.comboBox_pt.addItem("")
         self.horizontalLayout.addWidget(self.comboBox_pt)
-        self.label_wynik = QtWidgets.QLabel(self.widget)
+        self.label_wynik = QtWidgets.QLabel(self.layoutWidget)
         self.label_wynik.setMaximumSize(QtCore.QSize(71, 16777215))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.label_wynik.setFont(font)
         self.label_wynik.setObjectName("label_wynik")
         self.horizontalLayout.addWidget(self.label_wynik)
-        self.wynik_edt = QtWidgets.QTextEdit(self.widget)
+        self.wynik_edt = QtWidgets.QTextEdit(self.layoutWidget)
         self.wynik_edt.setMaximumSize(QtCore.QSize(111, 16777215))
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -142,9 +141,12 @@ class Ui_MainWindow(object):
         self.wynik_edt.setReadOnly(True)
         self.wynik_edt.setObjectName("wynik_edt")
         self.horizontalLayout.addWidget(self.wynik_edt)
+        self.podaj_edt = QtWidgets.QLineEdit(self.centralwidget)
+        self.podaj_edt.setGeometry(QtCore.QRect(200, 480, 121, 31))
+        self.podaj_edt.setObjectName("podaj_edt")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 833, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 969, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -159,7 +161,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -185,10 +186,7 @@ class Ui_MainWindow(object):
         self.actionZapisz_gr.setText(_translate("MainWindow", "Zapisz grę"))
         self.actionWczytaj_gr.setText(_translate("MainWindow", "Wczytaj grę"))
         self.actionStatystyki.setText(_translate("MainWindow", "Statystyki"))
-        self.koniec_btn.clicked.connect(self.koniec)
 
-    def koniec(self):
-        exit()
 
 if __name__ == "__main__":
     import sys
@@ -198,4 +196,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-

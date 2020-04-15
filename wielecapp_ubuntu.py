@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from baza_ubuntu import *
+import time
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -153,7 +155,6 @@ class Ui_MainWindow(object):
         self.actionWczytaj_gr.setObjectName("actionWczytaj_gr")
         self.actionStatystyki = QtWidgets.QAction(MainWindow)
         self.actionStatystyki.setObjectName("actionStatystyki")
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -164,6 +165,7 @@ class Ui_MainWindow(object):
         self.ustaw_pt(self.comboBox_pt.currentText())  # ustawienie poziomu tr. poczatkowego
         self.comboBox_pt.activated[str].connect(self.ustaw_pt)  # obsluga ustawianiapoziomu tr.
         self.podaj_edt.returnPressed.connect(self.odczytaj) #obsluga podawania liter
+        self.wynik=None
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -194,25 +196,81 @@ class Ui_MainWindow(object):
         exit() #funkcjonalność przycisku koniec
 
     def rozpoczecie(self): #funkcja realizująca funkcjonalosc gry
-        self.komunikatedt.setText(str("Rozpoczęto grę na poziomie "+ self.poziom_tr + "m. Hasło z kategorii " + self.kategoria +" zostało wylosowane.\nPodaj pierwszą literę:"))
-        self.hasloedt.setText(str(5*'*  '))
-        self.wynik_edt.setText('0')
+        self.liczba_prob = 10
+        self.wynik=0
+        self.wylosowane_haslo = pobierz_haslo(self)
+        self.komunikatedt.setText(str("Rozpoczęto grę na poziomie "+ self.poziom_tr + "m. Hasło z kategorii " + self.kategoria +" zostało wylosowane.\nPodaj pierwszą literę:\t\t\t\t Pozostało prób:" + str(self.liczba_prob)))
+        self.hasloedt.setText(str(len(self.wylosowane_haslo)*'*  '))
+        self.wynik_edt.setText(str(self.wynik))
+        self.wykorzystane_litery=[]
+        self.indeksy = []
+        for i in range(len(self.wylosowane_haslo)):
+            self.indeksy.append(False)
 
-    def ustaw_kat(self,wartosc): #funkcja wykrywa ustawienie innej kategorii niz poczatkowa(pierwsza w comboboxie)
-        self.kategoria=wartosc
+    def czy_wygrana(self): #fukcja sprawdzająca czy wszystkie litery zostały odgadnięte
+        self.zgadniete = 0
+        for i in range(len(self.wylosowane_haslo)):
+            if self.indeksy[i]:
+                self.zgadniete +=1
+        if self.zgadniete == len(self.wylosowane_haslo):
+            self.komunikatedt.setText("Gratulacje wygrałeś!!!\nTwój wynik końcowy: " + str(self.wynik_koncowy()))
+            return True
 
-    def ustaw_pt(self,wartosc): #funkcja wykrywa ustawienie innego poziou tr. niz poczatkowy(pierwsza w comboboxie)
-        self.poziom_tr=wartosc
+    def wynik_koncowy(self):
+        if self.poziom_tr == "Łatwy":
+            return self.wynik
+        elif self.poziom_tr == "Średni":
+            return 3*self.wynik
+        elif self.poziom_tr == "Trudny":
+            return 5*self.wynik
 
-    def odczytaj(self): #funkcja odczytująca podawane litery
-        self.podana_litera=self.podaj_edt.text()
+    def odczytaj(self):  # funkcja odczytująca podawane litery
+        self.podana_litera = self.podaj_edt.text().upper()
+        if self.wynik != None and not self.czy_wygrana():
+            if len(self.podana_litera)==1:
+                if self.podana_litera in self.wylosowane_haslo and self.podana_litera not in self.wykorzystane_litery:
+                    self.wykorzystane_litery.append(self.podana_litera)
+                    self.wynik += 500
+                    self.wynik_edt.setText(str(self.wynik))
+                    self.komunikatedt.setText("Brawo! Zgadłeś! \t\t\t\t Pozostało prób:" + str(self.liczba_prob) +"\nWykorzystane litery:"+ str(self.wykorzystane_litery) +"\nPodaj następną literę: ")
+                    for i in range(len(self.wylosowane_haslo)):
+                        if self.wylosowane_haslo[i] == self.podana_litera:
+                            self.indeksy[i] = True
 
-        print(self.podana_litera)
+                    haslo_kom = " ".join([litera if self.indeksy[i] else "*" for i, litera in enumerate(self.wylosowane_haslo)])
+                    self.hasloedt.setText(haslo_kom.strip())
+                    self.czy_wygrana()
+
+                elif self.podana_litera in self.wykorzystane_litery:
+                    self.komunikatedt.setText("Już podałeś tą literę!\t\t\t\t Pozostało prób:" + str(self.liczba_prob) +"\nWykorzystane litery:"+ str(self.wykorzystane_litery) +"\nPodaj następną literę: ")
+                else:
+                    self.wykorzystane_litery.append(self.podana_litera)
+                    self.liczba_prob-=1
+                    self.wynik-=100
+                    self.komunikatedt.setText("Pudło!\t\t\t\t Pozostało prób:" + str(self.liczba_prob) +"\nWykorzystane litery:"+ str(self.wykorzystane_litery) +"\nPodaj następną literę: ")
+                    self.wynik_edt.setText(str(self.wynik))
+                    if self.liczba_prob==0:
+                        self.komunikatedt.setText("GAME OVER")
+            else:
+                self.komunikatedt.setText("Wprowadzono błędne dane! Spróbuj ponownie")
+            self.podaj_edt.setText("")
+        else:
+            self.komunikatedt.setText("Aby rozpocząć grę wybierz ustawienia i klknij Rozpocznij grę.")
+            self.podaj_edt.setText("")
+
+    def ustaw_kat(self,wartosc):  # funkcja wykrywa ustawienie innej kategorii niz poczatkowa(pierwsza w comboboxie)
+        self.kategoria = wartosc
+
+    def ustaw_pt(self,wartosc):  # funkcja wykrywa ustawienie innego poziou tr. niz poczatkowy(pierwsza w comboboxie)
+        self.poziom_tr = wartosc
+
+
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
+    polacz()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
