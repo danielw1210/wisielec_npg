@@ -24,10 +24,10 @@
    <widget class="QLabel" name="labelwisielec">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>30</y>
+      <x>380</x>
+      <y>10</y>
       <width>381</width>
-      <height>121</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="palette">
@@ -70,7 +70,7 @@
     <property name="font">
      <font>
       <family>Freestyle Script</family>
-      <pointsize>100</pointsize>
+      <pointsize>72</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
@@ -88,7 +88,7 @@
    <widget class="QPushButton" name="rozpocznij_bnt">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>370</x>
       <y>220</y>
       <width>241</width>
       <height>41</height>
@@ -114,6 +114,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Arial</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -157,14 +158,15 @@
     <widget class="QLabel" name="haslolabel">
      <property name="geometry">
       <rect>
-       <x>26</x>
+       <x>16</x>
        <y>10</y>
-       <width>81</width>
+       <width>91</width>
        <height>41</height>
       </rect>
      </property>
      <property name="font">
       <font>
+       <family>Arial</family>
        <pointsize>20</pointsize>
       </font>
      </property>
@@ -183,6 +185,7 @@
      </property>
      <property name="font">
       <font>
+       <family>Arial</family>
        <pointsize>16</pointsize>
       </font>
      </property>
@@ -242,6 +245,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -300,6 +304,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -343,6 +348,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Arial</family>
          <pointsize>16</pointsize>
         </font>
        </property>
@@ -394,6 +400,26 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionZapisz_Gr"/>
+    <addaction name="actionWczytaj_Gr"/>
+   </widget>
+   <widget class="QMenu" name="menuStatystyki">
+    <property name="title">
+     <string>Statystyki</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuZasady_gry">
+    <property name="title">
+     <string>Zasady gry</string>
+    </property>
+   </widget>
+   <addaction name="menuMenu"/>
+   <addaction name="menuStatystyki"/>
+   <addaction name="menuZasady_gry"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionZapisz_gr">
@@ -409,6 +435,16 @@
   <action name="actionStatystyki">
    <property name="text">
     <string>Statystyki</string>
+   </property>
+  </action>
+  <action name="actionZapisz_Gr">
+   <property name="text">
+    <string>Zapisz Grę</string>
+   </property>
+  </action>
+  <action name="actionWczytaj_Gr">
+   <property name="text">
+    <string>Wczytaj Grę</string>
    </property>
   </action>
  </widget>
