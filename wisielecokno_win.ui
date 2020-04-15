@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>969</width>
+    <width>1003</width>
     <height>686</height>
    </rect>
   </property>
@@ -96,7 +96,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -114,8 +114,7 @@
     </property>
     <property name="font">
      <font>
-      <family>Arial</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -127,7 +126,7 @@
      <rect>
       <x>50</x>
       <y>260</y>
-      <width>891</width>
+      <width>851</width>
       <height>201</height>
      </rect>
     </property>
@@ -142,7 +141,7 @@
       <rect>
        <x>113</x>
        <y>10</y>
-       <width>761</width>
+       <width>711</width>
        <height>51</height>
       </rect>
      </property>
@@ -166,8 +165,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Arial</family>
-       <pointsize>20</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -185,8 +183,7 @@
      </property>
      <property name="font">
       <font>
-       <family>Arial</family>
-       <pointsize>16</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="text">
@@ -198,7 +195,7 @@
       <rect>
        <x>10</x>
        <y>110</y>
-       <width>861</width>
+       <width>811</width>
        <height>81</height>
       </rect>
      </property>
@@ -228,9 +225,9 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>30</x>
       <y>160</y>
-      <width>981</width>
+      <width>871</width>
       <height>41</height>
      </rect>
     </property>
@@ -245,8 +242,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="text">
@@ -304,8 +300,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="text">
@@ -348,8 +343,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Arial</family>
-         <pointsize>16</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="text">
@@ -396,7 +390,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>969</width>
+     <width>1003</width>
      <height>21</height>
     </rect>
    </property>
