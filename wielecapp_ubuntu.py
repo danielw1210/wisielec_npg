@@ -8,13 +8,15 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from baza_ubuntu import *
-import time
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.ApplicationModal)
         MainWindow.resize(833, 612)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../../Pobrane/hangman.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.labelwisielec = QtWidgets.QLabel(self.centralwidget)
@@ -145,6 +147,12 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 833, 22))
         self.menubar.setObjectName("menubar")
+        self.menuMenu = QtWidgets.QMenu(self.menubar)
+        self.menuMenu.setObjectName("menuMenu")
+        self.menuStatystyki = QtWidgets.QMenu(self.menubar)
+        self.menuStatystyki.setObjectName("menuStatystyki")
+        self.menuZasady_Gry = QtWidgets.QMenu(self.menubar)
+        self.menuZasady_Gry.setObjectName("menuZasady_Gry")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -155,6 +163,18 @@ class Ui_MainWindow(object):
         self.actionWczytaj_gr.setObjectName("actionWczytaj_gr")
         self.actionStatystyki = QtWidgets.QAction(MainWindow)
         self.actionStatystyki.setObjectName("actionStatystyki")
+        self.actionWczytaj_Gr = QtWidgets.QAction(MainWindow)
+        self.actionWczytaj_Gr.setObjectName("actionWczytaj_Gr")
+        self.actionZapisz = QtWidgets.QAction(MainWindow)
+        self.actionZapisz.setObjectName("actionZapisz")
+        self.actionWczytaj = QtWidgets.QAction(MainWindow)
+        self.actionWczytaj.setObjectName("actionWczytaj")
+        self.menuMenu.addAction(self.actionZapisz)
+        self.menuMenu.addAction(self.actionWczytaj)
+        self.menubar.addAction(self.menuMenu.menuAction())
+        self.menubar.addAction(self.menuStatystyki.menuAction())
+        self.menubar.addAction(self.menuZasady_Gry.menuAction())
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -164,8 +184,8 @@ class Ui_MainWindow(object):
         self.comboBox_kat.activated[str].connect(self.ustaw_kat)  # obsluga ustawiania kategorii
         self.ustaw_pt(self.comboBox_pt.currentText())  # ustawienie poziomu tr. poczatkowego
         self.comboBox_pt.activated[str].connect(self.ustaw_pt)  # obsluga ustawianiapoziomu tr.
-        self.podaj_edt.returnPressed.connect(self.odczytaj) #obsluga podawania liter
-        self.wynik=None
+        self.podaj_edt.returnPressed.connect(self.odczytaj)  # obsluga podawania liter
+        self.wynik = None
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -188,9 +208,15 @@ class Ui_MainWindow(object):
         self.comboBox_pt.setItemText(1, _translate("MainWindow", "Średni"))
         self.comboBox_pt.setItemText(2, _translate("MainWindow", "Trudny"))
         self.label_wynik.setText(_translate("MainWindow", "Wynik:"))
+        self.menuMenu.setTitle(_translate("MainWindow", "Menu"))
+        self.menuStatystyki.setTitle(_translate("MainWindow", "Statystyki"))
+        self.menuZasady_Gry.setTitle(_translate("MainWindow", "Zasady Gry"))
         self.actionZapisz_gr.setText(_translate("MainWindow", "Zapisz grę"))
         self.actionWczytaj_gr.setText(_translate("MainWindow", "Wczytaj grę"))
         self.actionStatystyki.setText(_translate("MainWindow", "Statystyki"))
+        self.actionWczytaj_Gr.setText(_translate("MainWindow", "Wczytaj Grę"))
+        self.actionZapisz.setText(_translate("MainWindow", "Zapisz Grę"))
+        self.actionWczytaj.setText(_translate("MainWindow", "Wczytaj Grę"))
 
     def koniec(self):
         exit() #funkcjonalność przycisku koniec
@@ -264,15 +290,11 @@ class Ui_MainWindow(object):
     def ustaw_pt(self,wartosc):  # funkcja wykrywa ustawienie innego poziou tr. niz poczatkowy(pierwsza w comboboxie)
         self.poziom_tr = wartosc
 
-
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    polacz()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-

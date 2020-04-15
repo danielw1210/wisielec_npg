@@ -394,6 +394,26 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionZapisz"/>
+    <addaction name="actionWczytaj"/>
+   </widget>
+   <widget class="QMenu" name="menuStatystyki">
+    <property name="title">
+     <string>Statystyki</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuZasady_Gry">
+    <property name="title">
+     <string>Zasady Gry</string>
+    </property>
+   </widget>
+   <addaction name="menuMenu"/>
+   <addaction name="menuStatystyki"/>
+   <addaction name="menuZasady_Gry"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionZapisz_gr">
@@ -409,6 +429,21 @@
   <action name="actionStatystyki">
    <property name="text">
     <string>Statystyki</string>
+   </property>
+  </action>
+  <action name="actionWczytaj_Gr">
+   <property name="text">
+    <string>Wczytaj Grę</string>
+   </property>
+  </action>
+  <action name="actionZapisz">
+   <property name="text">
+    <string>Zapisz Grę</string>
+   </property>
+  </action>
+  <action name="actionWczytaj">
+   <property name="text">
+    <string>Wczytaj Grę</string>
    </property>
   </action>
  </widget>
