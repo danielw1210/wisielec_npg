@@ -14,14 +14,14 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.ApplicationModal)
-        MainWindow.resize(833, 612)
+        MainWindow.resize(894, 636)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../../Pobrane/hangman.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.labelwisielec = QtWidgets.QLabel(self.centralwidget)
-        self.labelwisielec.setGeometry(QtCore.QRect(280, 40, 361, 111))
+        self.labelwisielec.setGeometry(QtCore.QRect(280, 20, 341, 131))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(32, 74, 135))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -43,7 +43,7 @@ class Ui_MainWindow(object):
         self.labelwisielec.setTextFormat(QtCore.Qt.PlainText)
         self.labelwisielec.setObjectName("labelwisielec")
         self.rozpocznij_bnt = QtWidgets.QPushButton(self.centralwidget)
-        self.rozpocznij_bnt.setGeometry(QtCore.QRect(330, 210, 181, 41))
+        self.rozpocznij_bnt.setGeometry(QtCore.QRect(330, 220, 211, 41))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.rozpocznij_bnt.setFont(font)
@@ -89,7 +89,7 @@ class Ui_MainWindow(object):
         self.koniec_btn.setGeometry(QtCore.QRect(720, 530, 111, 31))
         self.koniec_btn.setObjectName("koniec_btn")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(20, 160, 801, 41))
+        self.layoutWidget.setGeometry(QtCore.QRect(0, 160, 921, 41))
         self.layoutWidget.setObjectName("layoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -146,7 +146,7 @@ class Ui_MainWindow(object):
         self.podaj_edt.setObjectName("podaj_edt")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 833, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 894, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -161,14 +161,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        self.koniec_btn.clicked.connect(self.koniec)  # obsługa wcisniecia przycisku koniec
-        self.rozpocznij_bnt.clicked.connect(self.rozpoczecie)  # obsluga wcisniecia przycisku rozpocznij gre
-        self.ustaw_kat(self.comboBox_kat.currentText())  # ustawienie kategori poczatkowej
-        self.comboBox_kat.activated[str].connect(self.ustaw_kat)  # obsluga ustawiania kategorii
-        self.ustaw_pt(self.comboBox_pt.currentText())  # ustawienie poziomu tr. poczatkowego
-        self.comboBox_pt.activated[str].connect(self.ustaw_pt)  # obsluga ustawianiapoziomu tr.
-        self.podaj_edt.returnPressed.connect(self.odczytaj)  # obsluga podawania liter
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -195,25 +187,6 @@ class Ui_MainWindow(object):
         self.actionWczytaj_gr.setText(_translate("MainWindow", "Wczytaj grę"))
         self.actionStatystyki.setText(_translate("MainWindow", "Statystyki"))
 
-    def koniec(self):
-        exit()  # funkcjonalność przycisku koniec
-
-    def rozpoczecie(self):  # funkcja realizująca funkcjonalosc gry
-        self.komunikatedt.setText(str(
-            "Rozpoczęto grę na poziomie " + self.poziom_tr + "m. Hasło z kategorii " + self.kategoria + " zostało wylosowane.\nPodaj pierwszą literę:"))
-        self.hasloedt.setText(str(5 * '*  '))
-        self.wynik_edt.setText('0')
-
-    def ustaw_kat(self, wartosc):  # funkcja wykrywa ustawienie innej kategorii niz poczatkowa(pierwsza w comboboxie)
-        self.kategoria = wartosc
-
-    def ustaw_pt(self, wartosc):  # funkcja wykrywa ustawienie innego poziou tr. niz poczatkowy(pierwsza w comboboxie)
-        self.poziom_tr = wartosc
-
-    def odczytaj(self):  # funkcja odczytująca podawane litery
-        self.podana_litera = self.podaj_edt.text()
-
-        print(self.podana_litera)
 
 if __name__ == "__main__":
     import sys
